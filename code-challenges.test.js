@@ -89,16 +89,14 @@ const wordsContainingLetter = (array, letter) => {
             return false
     })
 }
-
 // Pass:   wordsContainingLetter ✓ finds words from input array which include input letter and return them in an array (1 ms)
 
 
 // --------------------3) Create a function that takes in an array of 5 numbers and determines whether or not the array is a "full house". A full house is exactly one pair and one three of a kind.
-
 // a) Create a test with expect statements using the variable provided.
 
 describe("fullHouseBooleanDeterminator", () => {
-    it("determines whether or not an array is a full house (a pair and three of a kind", () => {
+    it("determines whether or not an array is a full house (a pair and three of a kind)", () => {
         expect(fullHouseBooleanDeterminator(hand1)).toEqual(true)
         expect(fullHouseBooleanDeterminator(hand2)).toEqual(false)
         expect(fullHouseBooleanDeterminator(hand3)).toEqual(false)
@@ -119,31 +117,26 @@ const hand4 = [7, 2, 7, 2, 7]
 
 // b) Create the function that makes the test pass.
 
+// my brain was so fried on this and I walked away a couple of times. I initially tried to use an object to do this, which should be doable but also was needlessly complicated things so I simplified into an array and used the index for the card and incremented the value at the location instead
+
 // in - array of 5 numbers
 // out - Boolean
 // process - iterate through an array, determine if the array contains exactly one pair and one three-of-a-kind, output true or false accordingly. Possible tools - for loop, conditional, counter (plus equals) for each number value, objects
 
-// an array of objects corresponding to playing card numbers and a counter to store instances of a card
+
 // this function called fullHouseBooleanDeterminator takes in an array
 const fullHouseBooleanDeterminator = (array) => {
-    const cardNums = [
-        { num1: 1, count: 0},
-        { num2: 2, count: 0},
-        { num3: 3, count: 0},
-        { num4: 4, count: 0},
-        { num5: 5, count: 0},
-        { num6: 6, count: 0},
-        { num7: 7, count: 0},
-        { num8: 8, count: 0},
-        { num9: 9, count: 0},
-        { num10: 10, count: 0},
-        { numJ: 'J', count: 0},
-        { numQ: 'Q', count: 0},
-        { numK: 'K', count: 0}
-    ]
-    array.map(value => 
-        value === cardNums.num){
-            cardNums.count += 1
-        }
-    if cardNums.count == 2 
+    // a new array,  representing 13 cards is created to store amounts of cards
+    const cards = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    // iterate through the input array. For each input array value, increment the associated card number by increasing the value at the relevant  cards index by 1
+    array.map(value => cards[value-1] += 1)
+    // a nested function called fullHouse acts after the array is mapped into cards, and uses cards as its input
+    const fullHouse = (card) => { 
+        // if cards array has both a 2 and a 3 return true (ternary)
+        return card.includes(2 && 3) ? true : false
+    }
+    // call on and return the result of fullHouse(cards)
+    return fullHouse(cards)    
 }
+
+// pass:  fullHouseBooleanDeterminator ✓ determines whether or not an array is a full house (a pair and three of a kind
