@@ -80,7 +80,7 @@ const wordsContainingLetter = (array, letter) => {
     //it filters through that array by word
     return array.filter((word) => {
         //it accounts for casing and looks for whether the word includes the input letter
-        if (word.includes(letter.toLowerCase()) || word.includes(letter.toUpperCase())){
+        if (word.toLowerCase().includes(letter.toLowerCase())){
             // it returns a boolean because .filter() keeps iterations which result in true
             return true
         }
@@ -126,9 +126,9 @@ const hand4 = [7, 2, 7, 2, 7]
 
 // this function called fullHouseBooleanDeterminator takes in an array
 const fullHouseBooleanDeterminator = (array) => {
-    // a new array,  representing 13 cards is created to store amounts of cards
+    // a new array, representing the card range of Ace through King, is created to store amounts of each card type
     const cards = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    // iterate through the input array. For each input array value, increment the associated card number by increasing the value at the relevant  cards index by 1
+    // iterate through the input array. For each input array value, increment the associated card number by increasing the value at the relevant cards index by 1
     array.map(value => cards[value-1] += 1)
     // a nested function called fullHouse acts after the array is mapped into cards, and uses cards as its input
     const fullHouse = (card) => { 
